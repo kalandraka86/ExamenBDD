@@ -4,23 +4,19 @@ import java.sql.*;
 
 
 
-public class ConexionSQLServer {
+public class ConexionSQL {
 
 
 
-    // URL de conexión con credenciales, cifrado SSL y confianza en el certificado
-
-    private String url;
-
+    private static final String USER = "Hugo";
+    private static final String PASSWORD = "h1234";
+    private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=Repaso;user=" + USER + ";password=" + PASSWORD + ";encrypt=true;trustServerCertificate=true;";
+    private static ConexionSQL conexion = null;
 
 
     // Constructor para inicializar la URL de la base de datos
 
-    public ConexionSQLServer(String host, int puerto, String dbName, String usuario, String contrasena) {
-
-        this.url = "jdbc:sqlserver://" + host + ":" + puerto + ";databaseName=" + dbName +
-
-                ";encrypt=true;trustServerCertificate=true;user=" + usuario + ";password=" + contrasena;
+    public ConexionSQL() {
 
     }
 
@@ -48,7 +44,7 @@ public class ConexionSQLServer {
 
         // Establecer la conexión
 
-        return DriverManager.getConnection(url);
+        return DriverManager.getConnection(URL);
 
     }
 
